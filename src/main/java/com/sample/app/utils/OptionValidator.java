@@ -1,43 +1,35 @@
 package com.sample.app.utils;
 
+import com.sample.app.controllers.MessageController;
+
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class OptionValidator {
 
     // Валидация ввода номера опции действия
     public static int validateOptionInput(Scanner scanner) {
 
-        // Массив для выбора действий
-        int[] options = {0, 1, 2, 3, 4};
+        //Коллекция для выбора действий
+        Set<Integer> options = new HashSet<>(Arrays.asList(1, 2, 3, 4, 0));
 
         while (!scanner.hasNextInt()) {
             String str = scanner.nextLine().trim();
-            System.out.printf(Constants.NAN_NUMBER_MSG, str);
+            MessageController.out(String.format(Constants.NAN_NUMBER_MSG, str));
         }
 
         int inputData = scanner.nextInt();
 
-        while (!contains(options, inputData)) {
-            System.out.println(Constants.NO_SUCH_OPTION_MSG);
+        while (!options.contains(inputData)) {
+            MessageController.out("\n"+Constants.NO_SUCH_OPTION_MSG);
             while (!scanner.hasNextInt()) {
                 String str = scanner.next().trim();
-                System.out.printf(Constants.NAN_NUMBER_MSG, str);
+                MessageController.out(String.format(Constants.NAN_NUMBER_MSG, str));
             }
             inputData = scanner.nextInt();
         }
         return inputData;
-    }
-
-    // Проверка наличия ввода в массиве выбора
-    // действий через contains()
-    public static boolean contains(final int[] array, final int value) {
-        boolean result = false;
-        for (int i : array) {
-            if (i == value) {
-                result = true;
-                break;
-            }
-        }
-        return result;
     }
 }

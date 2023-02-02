@@ -1,5 +1,6 @@
 package com.sample.app.models;
 
+import com.sample.app.controllers.MessageController;
 import com.sample.app.database.DBCheck;
 import com.sample.app.database.DBConn;
 import com.sample.app.database.entities.Contact;

@@ -1,5 +1,6 @@
 package com.sample.app.utils;
 
+import com.sample.app.controllers.MessageController;
 import com.sample.app.database.DBConn;
 import com.sample.app.database.entities.Contact;
 
@@ -19,16 +20,16 @@ public class IdValidator {
 
         while (!scanner.hasNextInt()) {
             String str = scanner.nextLine().trim();
-            System.out.printf(Constants.NAN_NUMBER_MSG, str);
+            MessageController.out(String.format(Constants.NAN_NUMBER_MSG, str));
         }
         id = scanner.nextInt();
         while (id <= 0) {
-            System.out.println(Constants.INCORRECT_VALUE_MSG);
+            MessageController.out("\n"+Constants.INCORRECT_VALUE_MSG);
             while (!scanner.hasNextInt()) {
                 try {
                     str1 = scanner.next().trim();
                 } catch (InputMismatchException ime) {
-                    System.out.printf(Constants.NAN_NUMBER_MSG, str1);
+                    MessageController.out(String.format(Constants.NAN_NUMBER_MSG, str1));
                 }
             }
             id = scanner.nextInt();
